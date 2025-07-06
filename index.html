@@ -1,31 +1,849 @@
-Lista de Compras para o Churrasco (Tradicional)! 🛒🔥
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- <<< ALTERAÇÃO: Título e meta tags atualizados para ChurrApp -->
+    <title>ChurrApp - Sua Calculadora de Churrasco Perfeita!</title>
+    <meta name="description" content="ChurrApp: A melhor Calculadora de Churrasco online. Calcule carnes, bebidas e acompanhamentos para o seu evento de forma fácil e rápida. Personalize preços e cardápios!">
+    <meta name="keywords" content="ChurrApp, calculadora de churrasco, churrasco, calcular carne, calcular bebida, lista de compras churrasco, churrasco gourmet, churrasco vegetariano">
+    <meta id="meta-author" name="author" content="ChurrApp">
 
-🍖 Carnes e Petiscos
-- Carne Bovina (Fraldinha, Alcatra, etc.): 1.7 kg (R$ 119.00)
-- Linguiça: 1.0 kg (R$ 35.00)
-- Frango (Asa/Coração): 0.7 kg (R$ 17.50)
+    <!-- Social Media Meta Tags (Open Graph) -->
+    <meta property="og:title" content="ChurrApp - Sua Calculadora de Churrasco Perfeita!">
+    <meta property="og:description" content="Calcule as quantidades ideais para seu churrasco e veja uma estimativa de preços. Fácil, rápido e personalizável com o ChurrApp.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://placehold.co/1200x630/E63946/FFFFFF?text=ChurrApp">
+    <meta id="og-url" property="og:url" content="URL_DO_SEU_SITE_AQUI">
 
-🥖 Acompanhamentos
-- Pão de Alho: 8 unid. (R$ 20.00)
-- Queijo Coalho: 10 espetos (R$ 50.00)
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .counter-btn, .main-btn, .menu-btn, .theme-btn { transition: all 0.15s ease-in-out; }
+        .counter-btn:active, .main-btn:active, .menu-btn:active, .theme-btn:active { transform: scale(0.97); }
+        .theme-btn.selected {
+            transform: scale(1.1);
+            box-shadow: 0 0 0 3px white, 0 0 0 5px var(--theme-bg-color, #DC2626);
+        }
+        #settings-btn {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            z-index: 50;
+            background-color: var(--theme-bg-color, #DC2626);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        .modal-backdrop { transition: opacity 0.3s ease-in-out; }
+        /* Permite que inputs numéricos sejam editáveis mas esconde as setas padrão */
+        input[type=number]::-webkit-inner-spin-button, 
+        input[type=number]::-webkit-outer-spin-button { 
+            -webkit-appearance: none; 
+            margin: 0; 
+        }
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+    </style>
 
-🥤 Bebidas
-- Cerveja: 3.0 L (9 latas) (R$ 45.00)
-- Refrigerante: 3.0 L (R$ 24.00)
-- Água: 2.5 L (R$ 7.50)
+    <!-- SEO: Structured Data (JSON-LD) -->
+    <script id="json-ld-data" type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "Como Calcular as Quantidades para um Churrasco com o ChurrApp",
+      "description": "Use o ChurrApp para determinar as quantidades ideais de carnes, bebidas e acompanhamentos para seu evento, com estimativa de custo.",
+      "totalTime": "PT2M",
+      "estimatedCost": {
+        "@type": "MonetaryAmount",
+        "currency": "BRL",
+        "value": "50.00"
+      },
+      "supply": [
+        { "@type": "HowToSupply", "name": "Carne Bovina (Picanha, Alcatra, etc.)" },
+        { "@type": "HowToSupply", "name": "Linguiça" },
+        { "@type": "HowToSupply", "name": "Frango (Asa, Coração)" },
+        { "@type": "HowToSupply", "name": "Cerveja" },
+        { "@type": "HowToSupply", "name": "Refrigerante e Água" }
+      ],
+      "tool": [
+        { "@type": "HowToTool", "name": "ChurrApp (o próprio aplicativo)" }
+      ],
+      "step": [
+        {
+          "@type": "HowToStep",
+          "name": "Informe os Convidados",
+          "text": "Insira o número de adultos e crianças que participarão do churrasco.",
+          "url": "URL_DO_SEU_SITE_AQUI#input-section"
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Calcule a Lista",
+          "text": "Pressione o botão 'CALCULAR AGORA!' para gerar a lista de compras inicial.",
+          "url": "URL_DO_SEU_SITE_AQUI#result-section"
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Personalize o Cardápio e os Preços",
+          "text": "Na tela de resultados, escolha o estilo de churrasco e, se desejar, ajuste os preços dos ingredientes na área de configurações para uma estimativa mais precisa.",
+          "url": "URL_DO_SEU_SITE_AQUI#result-section"
+        }
+      ]
+    }
+    </script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
 
-☑️ Utensílios
-- Pratos e Talheres: 1 kit (R$ 20.00)
-- Copos Descartáveis: 1 pacote (R$ 15.00)
-- Guardanapos: 1 pacote (R$ 5.00)
-- Tábua de Corte: 1 unid. 
-- Faca Afiada: 1 unid. 
-- Acendedor de Fogo: 1 unid. (R$ 8.00)
+    <main class="w-full max-w-md mx-auto bg-white rounded-2xl shadow-lg p-6 my-4">
 
---- Resumo de Custos ---
-Total Estimado: R$ 366.00
-Valor por Pessoa (Geral): R$ 61.00
-Valor por Adulto (com álcool): R$ 76.00
-Valor por Adulto (sem álcool): R$ 53.50
+        <!-- Input Section -->
+        <section id="input-section">
+            <header class="text-center mb-8">
+                <!-- <<< ALTERAÇÃO: Título principal atualizado -->
+                <h1 class="text-3xl font-extrabold text-gray-800">ChurrApp 🥩🔥</h1>
+                <p class="text-gray-500 mt-1">Planeje seu churrasco sem desperdício!</p>
+            </header>
 
-Calculado com o ChurrApp!
+            <div class="space-y-6">
+                <div class="flex items-center justify-between">
+                    <label for="adultos-com-alcool" class="text-lg font-medium text-gray-700">🍻 Adultos (com álcool)</label>
+                    <div class="flex items-center gap-4">
+                        <button data-action="update-count" data-target="adultosComAlcool" data-amount="-1" aria-label="Diminuir número de adultos com álcool" class="counter-btn w-10 h-10 rounded-full bg-gray-200 text-2xl font-bold text-gray-600">-</button>
+                        <input type="number" id="adultos-com-alcool" value="0" class="w-16 h-12 text-center text-2xl font-bold border-2 border-gray-200 rounded-lg">
+                        <button data-action="update-count" data-target="adultosComAlcool" data-amount="1" aria-label="Aumentar número de adultos com álcool" class="counter-btn w-10 h-10 rounded-full bg-gray-200 text-2xl font-bold text-gray-600">+</button>
+                    </div>
+                </div>
+                <div class="flex items-center justify-between">
+                    <label for="adultos-sem-alcool" class="text-lg font-medium text-gray-700">🥤 Adultos (sem álcool)</label>
+                    <div class="flex items-center gap-4">
+                        <button data-action="update-count" data-target="adultosSemAlcool" data-amount="-1" aria-label="Diminuir número de adultos sem álcool" class="counter-btn w-10 h-10 rounded-full bg-gray-200 text-2xl font-bold text-gray-600">-</button>
+                        <input type="number" id="adultos-sem-alcool" value="0" class="w-16 h-12 text-center text-2xl font-bold border-2 border-gray-200 rounded-lg">
+                        <button data-action="update-count" data-target="adultosSemAlcool" data-amount="1" aria-label="Aumentar número de adultos sem álcool" class="counter-btn w-10 h-10 rounded-full bg-gray-200 text-2xl font-bold text-gray-600">+</button>
+                    </div>
+                </div>
+                <div class="flex items-center justify-between">
+                    <label for="criancas" class="text-lg font-medium text-gray-700">👧 Crianças</label>
+                    <div class="flex items-center gap-4">
+                        <button data-action="update-count" data-target="criancas" data-amount="-1" aria-label="Diminuir número de crianças" class="counter-btn w-10 h-10 rounded-full bg-gray-200 text-2xl font-bold text-gray-600">-</button>
+                        <input type="number" id="criancas" value="0" class="w-16 h-12 text-center text-2xl font-bold border-2 border-gray-200 rounded-lg">
+                        <button data-action="update-count" data-target="criancas" data-amount="1" aria-label="Aumentar número de crianças" class="counter-btn w-10 h-10 rounded-full bg-gray-200 text-2xl font-bold text-gray-600">+</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-8">
+                <button data-action="calculate" class="main-btn w-full bg-red-600 text-white font-bold py-4 rounded-xl text-lg hover:bg-red-700 themable-bg">
+                    CALCULAR AGORA!
+                </button>
+            </div>
+        </section>
+
+        <!-- Result Section (Hidden by default) -->
+        <section id="result-section" class="hidden">
+            <header class="text-center mb-6">
+                <h2 class="text-3xl font-extrabold text-gray-800">Sua Lista de Compras 🛒</h2>
+                 <div class="mt-4">
+                    <label for="menu-select" class="block text-sm font-medium text-gray-700 mb-1">Escolha o Estilo do Churrasco:</label>
+                    <select id="menu-select" class="w-full p-2 border border-gray-300 rounded-lg"></select>
+                </div>
+            </header>
+
+            <div class="space-y-5" id="result-items-container"></div>
+
+            <footer class="mt-6 border-t-2 pt-4 space-y-2">
+                <p class="text-xs text-center text-gray-500 mb-2">*Valores estimados! Se o seu açougueiro for gente boa, pode sair mais barato. Ajuste os preços na ⚙️ configuração!</p>
+                <div class="flex justify-between items-center">
+                    <span class="text-lg font-medium text-gray-800">Total Estimado:</span>
+                    <strong id="total-price" class="text-2xl font-bold themable-text">R$ 0,00</strong>
+                </div>
+                <div class="flex justify-between items-center text-gray-600">
+                    <span class="text-md">Valor por Pessoa (Geral):</span>
+                    <strong id="price-per-person" class="font-semibold">R$ 0,00</strong>
+                </div>
+                <div id="breakdown-drinking-adult" class="flex justify-between items-center text-gray-600 hidden">
+                    <span class="text-md">Valor por Adulto (com álcool):</span>
+                    <strong id="price-per-drinking-adult" class="font-semibold">R$ 0,00</strong>
+                </div>
+                <div id="breakdown-non-drinking-adult" class="flex justify-between items-center text-gray-600 hidden">
+                    <span class="text-md">Valor por Adulto (sem álcool):</span>
+                    <strong id="price-per-non-drinking-adult" class="font-semibold">R$ 0,00</strong>
+                </div>
+            </footer>
+
+            <div class="mt-8 grid grid-cols-2 gap-3">
+                <button data-action="copy-list" class="main-btn w-full bg-blue-500 text-white font-bold py-3 rounded-xl text-lg hover:bg-blue-600 flex items-center justify-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                    Copiar
+                </button>
+                 <button data-action="share" class="main-btn w-full bg-green-500 text-white font-bold py-3 rounded-xl text-lg hover:bg-green-600 flex items-center justify-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+                    WhatsApp
+                </button>
+            </div>
+            <div class="mt-3">
+                <button data-action="go-back" class="main-btn w-full bg-gray-200 text-gray-700 font-bold py-3 rounded-xl text-md hover:bg-gray-300">
+                    ◀ Voltar e Ajustar
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Settings Button -->
+    <button id="settings-btn" data-action="toggle-settings" aria-label="Abrir configurações" class="h-14 w-14 rounded-full text-white flex items-center justify-center">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+    </button>
+
+    <!-- Modals -->
+    <div id="settings-modal" data-modal="settings" class="modal-backdrop fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 hidden z-40">
+        <div class="bg-white rounded-2xl shadow-xl p-6 w-full max-w-xs text-center space-y-4">
+            <h3 class="text-xl font-bold text-gray-800">Configurações</h3>
+            <button data-action="toggle-theme-modal" class="w-full bg-gray-100 p-3 rounded-lg font-semibold text-gray-700">🎨 Personalizar Tema</button>
+            <button data-action="toggle-price-modal" class="w-full bg-gray-100 p-3 rounded-lg font-semibold text-gray-700">💰 Ajustar Preços</button>
+            <button data-action="close-modal" data-target="settings" class="mt-4 w-full bg-gray-200 text-gray-800 font-bold py-2 rounded-lg">Fechar</button>
+        </div>
+    </div>
+    <div id="theme-modal" data-modal="theme" class="modal-backdrop fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 hidden z-50">
+        <div class="bg-white rounded-2xl shadow-xl p-6 w-full max-w-xs text-center">
+            <h3 class="text-xl font-bold text-gray-800 mb-4">Escolha um Tema</h3>
+            <div class="flex justify-center items-center gap-6">
+                 <button data-action="change-theme" data-theme="red" aria-label="Tema Vermelho" class="theme-btn h-12 w-12 rounded-full bg-red-600 border-2 border-white shadow-md"></button>
+                 <button data-action="change-theme" data-theme="blue" aria-label="Tema Azul" class="theme-btn h-12 w-12 rounded-full bg-blue-600 border-2 border-white shadow-md"></button>
+                 <button data-action="change-theme" data-theme="green" aria-label="Tema Verde" class="theme-btn h-12 w-12 rounded-full bg-green-600 border-2 border-white shadow-md"></button>
+            </div>
+            <button data-action="close-modal" data-target="theme" class="mt-6 w-full bg-gray-200 text-gray-700 font-bold py-2 rounded-lg">Fechar</button>
+        </div>
+    </div>
+    <div id="price-modal" data-modal="price" class="modal-backdrop fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 hidden z-50">
+        <div class="bg-white rounded-2xl shadow-xl p-6 w-full max-w-sm text-center">
+            <h3 class="text-xl font-bold text-gray-800 mb-4">Ajustar Preços (por Kg ou Unid.)</h3>
+            <div id="price-list-container" class="max-h-80 overflow-y-auto space-y-4 pr-2"></div>
+            <div class="mt-6 space-y-3">
+                 <button data-action="save-prices" class="w-full font-bold py-3 rounded-lg text-white themable-bg">Salvar e Fechar</button>
+                 <button data-action="restore-prices" class="w-full font-bold py-2 rounded-lg text-white bg-gray-500 hover:bg-gray-600">Restaurar Padrões</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="alert-modal" class="modal-backdrop fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center p-4 hidden z-50">
+        <div class="bg-white rounded-2xl shadow-xl p-6 w-full max-w-sm text-center">
+            <h3 id="alert-title" class="text-xl font-bold text-gray-800 mb-4">Atenção</h3>
+            <p id="alert-message" class="text-gray-600 mb-6"></p>
+            <div id="alert-buttons" class="flex justify-end gap-4">
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        // <<< ALTERAÇÃO: Bloco de configuração centralizado e atualizado para ChurrApp
+        // --- CONFIGURAÇÕES GERAIS DO SITE ---
+        // Altere os valores abaixo para personalizar as informações do seu site.
+        const siteConfig = {
+            // Coloque a URL completa do seu site aqui. Essencial para SEO e compartilhamento.
+            // Exemplo: 'https://www.meuchurrapp.com.br'
+            // Se deixar como está, as URLs nos metadados não serão preenchidas.
+            url: 'URL_DO_SEU_SITE_AQUI', 
+            
+            // Nome do autor ou do aplicativo. Aparecerá nos metadados do site.
+            author: 'ChurrApp' 
+        };
+
+
+    document.addEventListener('DOMContentLoaded', () => {
+        
+        // --- STATE & CONFIGURATION ---
+        const defaultPriceConfig = {
+            carne: 70, linguica: 35, frango: 25, costela: 45, kafta: 40, ancho: 90, picanha_suina: 50,
+            peixe: 60, camarao: 80, pao: 2.5, queijo: 5, pimentao_recheado: 7, espeto_legumes: 6,
+            milho: 3, farofa: 10, vinagrete: 15, carvao: 5, sal: 5, gelo: 10, cerveja: 15, refrigerante: 8, agua: 3,
+            pratos_talheres: 20, copos: 15, guardanapos: 5, tabua_corte: 0, faca_afiada: 0, acendedor: 8
+        };
+
+        const appState = {
+            adultosComAlcool: 0,
+            adultosSemAlcool: 0,
+            criancas: 0,
+            selectedMenuKey: 'tradicional',
+            selectedTheme: 'red',
+            priceConfig: { ...defaultPriceConfig }
+        };
+
+        const themes = {
+            red: { bg: 'bg-red-600', hover: 'hover:bg-red-700', text: 'text-red-700', border: 'border-red-200', hex: '#DC2626' },
+            blue: { bg: 'bg-blue-600', hover: 'hover:bg-blue-700', text: 'text-blue-700', border: 'border-blue-200', hex: '#2563EB' },
+            green: { bg: 'bg-green-600', hover: 'hover:bg-green-700', text: 'text-green-700', border: 'border-green-200', hex: '#16A34A' }
+        };
+
+        const quantities = {
+            carne: { adulto: 350, crianca: 150 }, linguica: { adulto: 200, crianca: 100 },
+            frango: { adulto: 150, crianca: 50 }, costela: { adulto: 350, crianca: 100 },
+            kafta: { adulto: 200, crianca: 100 }, ancho: { adulto: 350, crianca: 0 },
+            picanha_suina: { adulto: 250, crianca: 100 }, peixe: { adulto: 300, crianca: 150 },
+            camarao: { adulto: 200, crianca: 100 }, pao: { adulto: 1.5, crianca: 1 }, 
+            queijo: { adulto: 2, crianca: 1 }, pimentao_recheado: { adulto: 1, crianca: 0 }, 
+            espeto_legumes: { adulto: 2, crianca: 1 }, milho: { adulto: 1, crianca: 1 },
+            cerveja: { adulto: 1500, crianca: 0 },
+            refrigerante: { adulto: 500, crianca: 500 },
+            agua: { adulto: 500, crianca: 250 },
+            pratos_talheres: { adulto: 0, crianca: 0 },
+            copos: { adulto: 0, crianca: 0 },
+            guardanapos: { adulto: 0, crianca: 0 },
+            tabua_corte: { adulto: 0, crianca: 0 },
+            faca_afiada: { adulto: 0, crianca: 0 },
+            acendedor: { adulto: 0, crianca: 0 }
+        };
+
+        const menus = {
+            tradicional: { name: 'Tradicional', items: ['carne', 'linguica', 'frango', 'pao', 'queijo'] },
+            economico: { name: 'Econômico', items: ['linguica', 'frango', 'pao', 'farofa'] },
+            petiscos: { name: 'Petiscos de Boteco', items: ['linguica', 'frango', 'kafta', 'queijo', 'pao'] },
+            gaucho: { name: 'Gaúcho de Respeito', items: ['costela', 'ancho', 'linguica', 'pao', 'farofa'] },
+            gourmet: { name: 'Gourmet', items: ['ancho', 'picanha_suina', 'camarao', 'pimentao_recheado', 'queijo'] },
+            fit: { name: 'Fit & Leve', items: ['frango', 'peixe', 'espeto_legumes', 'queijo', 'agua'] },
+            vegetariano: { name: 'Vegetariano na Brasa', items: ['espeto_legumes', 'queijo', 'milho', 'pao', 'vinagrete'] },
+            mar_e_brasa: { name: 'Mar & Brasa', items: ['peixe', 'camarao', 'pimentao_recheado', 'pao'] },
+            so_picanha: { name: 'Só Picanha (ou Ancho)', items: ['ancho', 'pao', 'queijo', 'vinagrete'] },
+            festa_da_firma: { name: 'Festa da Firma', items: ['linguica', 'frango', 'kafta', 'pao'] }
+        };
+        
+        const itemDetails = {
+            carne: { name: 'Carne Bovina (Fraldinha, Alcatra, etc.)', unit: 'kg', category: 'comida' }, linguica: { name: 'Linguiça', unit: 'kg', category: 'comida' },
+            frango: { name: 'Frango (Asa/Coração)', unit: 'kg', category: 'comida' }, costela: { name: 'Costela Bovina', unit: 'kg', category: 'comida' },
+            kafta: { name: 'Kafta / Espetinhos', unit: 'kg', category: 'comida' }, ancho: { name: 'Bife Ancho / Picanha', unit: 'kg', category: 'comida' },
+            picanha_suina: { name: 'Picanha Suína', unit: 'kg', category: 'comida' }, peixe: { name: 'Peixe na Brasa', unit: 'kg', category: 'comida' },
+            camarao: { name: 'Camarão no Espeto', unit: 'kg', category: 'comida' }, pao: { name: 'Pão de Alho', unit: 'unid.', category: 'comida' },
+            queijo: { name: 'Queijo Coalho', unit: 'espetos', category: 'comida' }, pimentao_recheado: { name: 'Pimentão Recheado', unit: 'unid.', category: 'comida' },
+            espeto_legumes: { name: 'Espeto de Legumes', unit: 'unid.', category: 'comida' }, milho: { name: 'Milho na Brasa', unit: 'unid.', category: 'comida' },
+            farofa: { name: 'Farofa Pronta', unit: 'pacote', category: 'comida' }, vinagrete: { name: 'Vinagrete', unit: 'kit', category: 'comida' },
+            cerveja: { name: 'Cerveja', unit: 'L', category: 'alcool' }, 
+            refrigerante: { name: 'Refrigerante', unit: 'L', category: 'nao-alcool' }, agua: { name: 'Água', unit: 'L', category: 'nao-alcool' },
+            carvao: { name: 'Carvão', unit: 'kg', category: 'essenciais' }, sal: { name: 'Sal Grosso', unit: 'pacote', category: 'essenciais' }, gelo: { name: 'Gelo', unit: 'saco', category: 'essenciais' },
+            pratos_talheres: { name: 'Pratos e Talheres', unit: 'kit', category: 'utensilios' },
+            copos: { name: 'Copos Descartáveis', unit: 'pacote', category: 'utensilios' },
+            guardanapos: { name: 'Guardanapos', unit: 'pacote', category: 'utensilios' },
+            tabua_corte: { name: 'Tábua de Corte', unit: 'unid.', category: 'utensilios' },
+            faca_afiada: { name: 'Faca Afiada', unit: 'unid.', category: 'utensilios' },
+            acendedor: { name: 'Acendedor de Fogo', unit: 'unid.', category: 'utensilios' }
+        };
+
+        const itemCategories = {
+            '🍖 Carnes e Petiscos': ['carne', 'linguica', 'frango', 'costela', 'kafta', 'ancho', 'picanha_suina', 'peixe', 'camarao'],
+            '🥖 Acompanhamentos': ['pao', 'queijo', 'pimentao_recheado', 'espeto_legumes', 'milho', 'farofa', 'vinagrete'],
+            '🥤 Bebidas': ['cerveja', 'refrigerante', 'agua'],
+            '🔥 Essenciais': ['carvao', 'sal', 'gelo'],
+            '☑️ Utensílios': ['pratos_talheres', 'copos', 'guardanapos', 'tabua_corte', 'faca_afiada', 'acendedor']
+        };
+
+        const DOMElements = {
+            inputSection: document.getElementById('input-section'),
+            resultSection: document.getElementById('result-section'),
+            adultosComAlcoolInput: document.getElementById('adultos-com-alcool'),
+            adultosSemAlcoolInput: document.getElementById('adultos-sem-alcool'),
+            criancasInput: document.getElementById('criancas'),
+            menuSelect: document.getElementById('menu-select'),
+            resultItemsContainer: document.getElementById('result-items-container'),
+            totalPrice: document.getElementById('total-price'),
+            pricePerPerson: document.getElementById('price-per-person'),
+            pricePerDrinkingAdult: document.getElementById('price-per-drinking-adult'),
+            pricePerNonDrinkingAdult: document.getElementById('price-per-non-drinking-adult'),
+            priceListContainer: document.getElementById('price-list-container'),
+            breakdownDrinkingAdultRow: document.getElementById('breakdown-drinking-adult'),
+            breakdownNonDrinkingAdultRow: document.getElementById('breakdown-non-drinking-adult')
+        };
+
+        // --- UI & THEME FUNCTIONS ---
+        const applySiteConfig = () => {
+            if (siteConfig.url && siteConfig.url !== 'URL_DO_SEU_SITE_AQUI') {
+                const ogUrlTag = document.getElementById('og-url');
+                if (ogUrlTag) ogUrlTag.setAttribute('content', siteConfig.url);
+
+                const jsonLdScript = document.getElementById('json-ld-data');
+                if (jsonLdScript) {
+                    try {
+                        const jsonData = JSON.parse(jsonLdScript.textContent);
+                        if (jsonData.step && Array.isArray(jsonData.step)) {
+                            jsonData.step.forEach(step => {
+                                if (step.url) {
+                                    step.url = siteConfig.url + (step.url.includes('#') ? step.url.substring(step.url.indexOf('#')) : '');
+                                }
+                            });
+                        }
+                        jsonLdScript.textContent = JSON.stringify(jsonData, null, 2);
+                    } catch (e) {
+                        console.error("Erro ao processar dados JSON-LD:", e);
+                    }
+                }
+            }
+
+            const authorTag = document.getElementById('meta-author');
+            if (authorTag) authorTag.setAttribute('content', siteConfig.author);
+        };
+
+        const showCustomAlert = (message, title = 'Atenção', onConfirm = null) => {
+            const modal = document.getElementById('alert-modal');
+            document.getElementById('alert-title').textContent = title;
+            document.getElementById('alert-message').textContent = message;
+            const buttonContainer = document.getElementById('alert-buttons');
+            buttonContainer.innerHTML = '';
+
+            if (onConfirm && typeof onConfirm === 'function') {
+                const confirmBtn = document.createElement('button');
+                confirmBtn.className = 'px-6 py-2 rounded-lg text-white font-semibold themable-bg';
+                confirmBtn.textContent = 'Confirmar';
+                confirmBtn.onclick = () => {
+                    onConfirm();
+                    modal.classList.add('hidden');
+                };
+                
+                const cancelBtn = document.createElement('button');
+                cancelBtn.className = 'px-6 py-2 rounded-lg bg-gray-200 text-gray-800 font-semibold';
+                cancelBtn.textContent = 'Cancelar';
+                cancelBtn.onclick = () => {
+                    modal.classList.add('hidden');
+                };
+
+                buttonContainer.appendChild(cancelBtn);
+                buttonContainer.appendChild(confirmBtn);
+
+            } else {
+                const okBtn = document.createElement('button');
+                okBtn.className = 'px-6 py-2 rounded-lg text-white font-semibold themable-bg';
+                okBtn.textContent = 'OK';
+                okBtn.onclick = () => {
+                    modal.classList.add('hidden');
+                };
+                buttonContainer.appendChild(okBtn);
+            }
+
+            modal.classList.remove('hidden');
+            changeTheme(appState.selectedTheme);
+        };
+
+        const toggleModal = (modalId, show) => {
+            const modal = document.querySelector(`[data-modal="${modalId}"]`);
+            if (!modal) {
+                console.error(`Modal com data-modal="${modalId}" não foi encontrado.`);
+                return;
+            }
+            if (show) {
+                modal.classList.remove('hidden');
+                setTimeout(() => modal.style.opacity = '1', 10);
+            } else {
+                modal.style.opacity = '0';
+                setTimeout(() => modal.classList.add('hidden'), 300);
+            }
+        };
+
+        const changeTheme = (themeName) => {
+            appState.selectedTheme = themeName;
+            const theme = themes[themeName];
+            document.documentElement.style.setProperty('--theme-bg-color', theme.hex);
+            document.querySelectorAll('.theme-btn').forEach(btn => btn.classList.remove('selected'));
+            document.querySelector(`.theme-btn[data-theme="${themeName}"]`).classList.add('selected');
+            document.querySelectorAll('.themable-bg, .themable-text, .themable-border').forEach(el => {
+                Object.values(themes).forEach(t => el.classList.remove(t.bg, t.hover, t.text, t.border));
+                if (el.classList.contains('themable-bg')) el.classList.add(theme.bg, theme.hover);
+                if (el.classList.contains('themable-text')) el.classList.add(theme.text);
+                if (el.classList.contains('themable-border')) el.classList.add(theme.border);
+            });
+        };
+
+        // --- PRICE MANAGEMENT ---
+        const renderPriceSettings = () => {
+            const container = DOMElements.priceListContainer;
+            container.innerHTML = '';
+            Object.entries(itemCategories).forEach(([categoryName, items]) => {
+                const categoryHeader = document.createElement('h4');
+                categoryHeader.className = 'text-lg font-bold text-left themable-text';
+                categoryHeader.textContent = categoryName;
+                container.appendChild(categoryHeader);
+                
+                items.forEach(key => {
+                    const div = document.createElement('div');
+                    div.className = 'flex items-center justify-between bg-gray-50 p-2 rounded-lg';
+                    div.innerHTML = `
+                        <span class="text-left text-sm font-medium text-gray-700">${itemDetails[key].name}</span>
+                        <div class="flex items-center gap-2">
+                            <button data-action="update-price" data-target="${key}" data-amount="-1" aria-label="Diminuir preço de ${itemDetails[key].name}" class="counter-btn w-7 h-7 rounded-full bg-gray-200 text-lg font-bold text-gray-600">-</button>
+                            <input type="number" step="0.01" id="price-${key}" value="${appState.priceConfig[key].toFixed(2)}" class="w-20 h-10 text-center font-bold border-2 border-gray-200 rounded-lg">
+                            <button data-action="update-price" data-target="${key}" data-amount="1" aria-label="Aumentar preço de ${itemDetails[key].name}" class="counter-btn w-7 h-7 rounded-full bg-gray-200 text-lg font-bold text-gray-600">+</button>
+                        </div>
+                    `;
+                    container.appendChild(div);
+                });
+            });
+            changeTheme(appState.selectedTheme);
+        };
+
+        const saveAndClosePrices = () => {
+            DOMElements.priceListContainer.querySelectorAll('input[type="number"]').forEach(input => {
+                const key = input.id.replace('price-', '');
+                appState.priceConfig[key] = parseFloat(input.value) || 0;
+            });
+            localStorage.setItem('churrascoPrices', JSON.stringify(appState.priceConfig));
+            populateMenuSelect();
+            toggleModal('price', false);
+            if (!DOMElements.resultSection.classList.contains('hidden')) {
+                renderCalculation();
+            }
+        };
+
+        const restoreDefaultPrices = () => {
+            showCustomAlert(
+                "Você tem certeza que deseja restaurar todos os preços para os valores padrão?",
+                "Restaurar Preços",
+                () => {
+                    appState.priceConfig = { ...defaultPriceConfig };
+                    localStorage.removeItem('churrascoPrices');
+                    renderPriceSettings();
+                    if (!DOMElements.resultSection.classList.contains('hidden')) {
+                        renderCalculation();
+                    }
+                    showCustomAlert("Preços restaurados com sucesso!", "Sucesso");
+                }
+            );
+        };
+
+        const loadPricesFromStorage = () => {
+            const savedPrices = localStorage.getItem('churrascoPrices');
+            if (savedPrices) {
+                appState.priceConfig = { ...appState.priceConfig, ...JSON.parse(savedPrices) };
+            }
+        };
+
+        // --- CALCULATION & RENDER ---
+        const calculateBaseMenuCost = (menuKey) => {
+            const menu = menus[menuKey];
+            let cost = 0;
+            const allItems = [...menu.items, 'cerveja', 'refrigerante', 'agua'];
+            allItems.forEach(itemKey => {
+                const q = quantities[itemKey];
+                const p = appState.priceConfig[itemKey];
+                if (q && p) {
+                    let amount = q.adulto;
+                    if (itemDetails[itemKey].unit === 'kg' || itemDetails[itemKey].unit === 'L') {
+                        amount /= 1000;
+                    }
+                    cost += amount * p;
+                }
+            });
+            return cost;
+        };
+
+        const populateMenuSelect = () => {
+            DOMElements.menuSelect.innerHTML = '';
+            Object.keys(menus).forEach(key => {
+                const option = document.createElement('option');
+                option.value = key;
+                const cost = calculateBaseMenuCost(key);
+                option.textContent = `${menus[key].name} (Aprox. R$ ${cost.toFixed(2)}/pessoa)`;
+                DOMElements.menuSelect.appendChild(option);
+            });
+            DOMElements.menuSelect.value = appState.selectedMenuKey;
+        };
+
+        const renderCalculation = () => {
+            const menu = menus[appState.selectedMenuKey];
+            const container = DOMElements.resultItemsContainer;
+            container.innerHTML = '';
+
+            const totalAdultos = appState.adultosComAlcool + appState.adultosSemAlcool;
+            const totalConvidados = totalAdultos + appState.criancas;
+
+            let totalCarnesGeral = 0;
+            let custoTotal = 0;
+            let custoAlcool = 0;
+            let custoBase = 0;
+            
+            const itemsToRender = [...new Set([
+                ...menu.items,
+                'cerveja', 'refrigerante', 'agua',
+                'carvao', 'sal', 'gelo',
+                ...itemCategories['☑️ Utensílios']
+            ])];
+            
+            const categoryFragments = {};
+            Object.keys(itemCategories).forEach(categoryName => {
+                categoryFragments[categoryName] = document.createDocumentFragment();
+            });
+
+            itemsToRender.forEach(itemKey => {
+                const d = itemDetails[itemKey];
+                if (d.category === 'comida' && d.unit === 'kg') {
+                    const q = quantities[itemKey];
+                    const amount = (q.adulto * totalAdultos) + (q.crianca * appState.criancas);
+                    totalCarnesGeral += amount / 1000;
+                }
+            });
+
+            itemsToRender.forEach(itemKey => {
+                const q = quantities[itemKey];
+                const d = itemDetails[itemKey];
+                const p = appState.priceConfig[itemKey];
+                if (!q || !d || p === undefined) return;
+
+                let amount = 0;
+                if (d.category === 'alcool') {
+                    amount = q.adulto * appState.adultosComAlcool;
+                } else if (d.category === 'comida' || d.category === 'nao-alcool') {
+                    amount = (q.adulto * totalAdultos) + (q.crianca * appState.criancas);
+                }
+
+                let itemPrice = 0;
+                let amountText = '';
+
+                if (d.category === 'utensilios' || ['sal', 'gelo', 'farofa', 'vinagrete'].includes(itemKey)) {
+                    amountText = '1 ' + d.unit;
+                    itemPrice = p;
+                } else if (itemKey === 'carvao') {
+                    amount = Math.max(4, Math.ceil(totalCarnesGeral / 4) * 4);
+                    amountText = `${amount} kg`;
+                    itemPrice = (amount / 4) * p;
+                } else if (d.unit === 'kg' || d.unit === 'L') {
+                    amount /= 1000;
+                    itemPrice = amount * p;
+                    amountText = `${amount.toFixed(1)} ${d.unit}`;
+                    if(itemKey === 'cerveja') {
+                         amountText = `${amount.toFixed(1)} L (${Math.ceil(amount * 1000 / 350)} latas)`;
+                    }
+                } else {
+                    amount = Math.ceil(amount);
+                    itemPrice = amount * p;
+                    amountText = `${amount} ${d.unit}`;
+                }
+                
+                if (itemPrice === 0 && d.category !== 'utensilios' && p === 0) return;
+
+                custoTotal += itemPrice;
+                if (d.category === 'alcool') {
+                    custoAlcool += itemPrice;
+                } else {
+                    custoBase += itemPrice;
+                }
+
+                const priceText = itemPrice > 0 ? `<span class="text-gray-500 text-sm">(R$ ${itemPrice.toFixed(2)})</span>` : '';
+                
+                const li = document.createElement('li');
+                li.className = 'flex justify-between items-center';
+                li.innerHTML = `<span>${d.name}</span> <div class="text-right"><strong class="font-bold">${amountText}</strong> ${priceText}</div>`;
+
+                for (const [categoryName, items] of Object.entries(itemCategories)) {
+                    if (items.includes(itemKey)) {
+                        categoryFragments[categoryName].appendChild(li);
+                        break;
+                    }
+                }
+            });
+
+            Object.entries(categoryFragments).forEach(([categoryName, fragment]) => {
+                if (fragment.children.length > 0) {
+                    const div = document.createElement('div');
+                    div.innerHTML = `<h3 class="text-xl font-bold border-b-2 pb-1 mb-3 themable-border">${categoryName}</h3>`;
+                    const ul = document.createElement('ul');
+                    ul.className = 'space-y-2 text-gray-700';
+                    ul.appendChild(fragment);
+                    div.appendChild(ul);
+                    container.appendChild(div);
+                }
+            });
+            
+            const custoBasePorPessoa = totalConvidados > 0 ? custoBase / totalConvidados : 0;
+            const valorPorAdultoComAlcool = custoBasePorPessoa + (appState.adultosComAlcool > 0 ? custoAlcool / appState.adultosComAlcool : 0);
+            const valorPorAdultoSemAlcool = custoBasePorPessoa;
+            const valorPorPessoaGeral = totalConvidados > 0 ? custoTotal / totalConvidados : 0;
+
+            DOMElements.totalPrice.textContent = `R$ ${custoTotal.toFixed(2)}`;
+            DOMElements.pricePerPerson.textContent = `R$ ${valorPorPessoaGeral.toFixed(2)}`;
+            DOMElements.pricePerDrinkingAdult.textContent = `R$ ${valorPorAdultoComAlcool.toFixed(2)}`;
+            DOMElements.pricePerNonDrinkingAdult.textContent = `R$ ${valorPorAdultoSemAlcool.toFixed(2)}`;
+            
+            if (appState.adultosComAlcool > 0 && appState.adultosSemAlcool > 0) {
+                DOMElements.breakdownDrinkingAdultRow.classList.remove('hidden');
+                DOMElements.breakdownNonDrinkingAdultRow.classList.remove('hidden');
+            } else {
+                DOMElements.breakdownDrinkingAdultRow.classList.add('hidden');
+                DOMElements.breakdownNonDrinkingAdultRow.classList.add('hidden');
+            }
+
+            changeTheme(appState.selectedTheme);
+        };
+
+        // --- EVENT HANDLERS & ACTIONS ---
+        // <<< ALTERAÇÃO: Texto de compartilhamento atualizado para ChurrApp
+        const generateListText = (formatForWhatsapp = true) => {
+            const bold = (str) => formatForWhatsapp ? `*${str}*` : str;
+
+            let text = `${bold(`Lista de Compras para o Churrasco (${menus[appState.selectedMenuKey].name})!`)} 🛒🔥\n\n`;
+            
+            document.querySelectorAll('#result-items-container > div').forEach(div => {
+                let sectionText = '';
+                const header = div.querySelector('h3').textContent;
+                sectionText += `${bold(header)}\n`;
+                div.querySelectorAll('li').forEach(li => {
+                    const item = li.querySelector('span').textContent;
+                    const amount = li.querySelector('strong').textContent;
+                    const price = li.querySelector('span.text-gray-500')?.textContent || '';
+                    sectionText += `- ${item}: ${amount} ${price}\n`;
+                });
+                if (sectionText.split('\n').length > 2) {
+                     text += sectionText + '\n';
+                }
+            });
+
+            text += `${bold('--- Resumo de Custos ---')}\n`;
+            text += `${bold('Total Estimado:')} ${DOMElements.totalPrice.textContent}\n`;
+            text += `${bold('Valor por Pessoa (Geral):')} ${DOMElements.pricePerPerson.textContent}\n`;
+
+            if (appState.adultosComAlcool > 0 && appState.adultosSemAlcool > 0) {
+                 text += `${bold('Valor por Adulto (com álcool):')} ${DOMElements.pricePerDrinkingAdult.textContent}\n`;
+                 text += `${bold('Valor por Adulto (sem álcool):')} ${DOMElements.pricePerNonDrinkingAdult.textContent}\n`;
+            }
+
+            text += `\nCalculado com o ChurrApp!`;
+            return text.trim();
+        };
+
+        const copyListToClipboard = () => {
+            const textToCopy = generateListText(false);
+            const textArea = document.createElement("textarea");
+            textArea.style.position = "fixed";
+            textArea.style.top = "0";
+            textArea.style.left = "0";
+            textArea.style.width = "2em";
+            textArea.style.height = "2em";
+            textArea.style.padding = "0";
+            textArea.style.border = "none";
+            textArea.style.outline = "none";
+            textArea.style.boxShadow = "none";
+            textArea.style.background = "transparent";
+            textArea.value = textToCopy;
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            try {
+                const successful = document.execCommand('copy');
+                if (successful) {
+                    showCustomAlert('Lista copiada para a área de transferência!', 'Sucesso!');
+                } else {
+                    showCustomAlert('Não foi possível copiar a lista. Seu navegador pode não suportar esta ação.', 'Erro');
+                }
+            } catch (err) {
+                console.error('Fallback: Falha ao copiar texto', err);
+                showCustomAlert('Ocorreu um erro ao tentar copiar a lista.', 'Erro');
+            }
+            document.body.removeChild(textArea);
+        };
+
+        const share = () => {
+            const text = generateListText(true);
+            const encodedText = encodeURIComponent(text);
+            window.open(`https://api.whatsapp.com/send?text=${encodedText}`, '_blank');
+        };
+
+        const handleDirectInput = (e) => {
+            const id = e.target.id;
+            let value = parseInt(e.target.value, 10);
+            if (isNaN(value) || value < 0) {
+                value = 0;
+            }
+            
+            if (id === 'adultos-com-alcool') appState.adultosComAlcool = value;
+            if (id === 'adultos-sem-alcool') appState.adultosSemAlcool = value;
+            if (id === 'criancas') appState.criancas = value;
+            
+            e.target.value = value;
+        };
+
+        const handleAction = (e) => {
+            const target = e.target.closest('[data-action]');
+            if (!target) return;
+
+            const { action, target: dataTarget, amount, theme } = target.dataset;
+
+            switch (action) {
+                case 'update-count':
+                    const input = document.getElementById(dataTarget.replace('adultosComAlcool', 'adultos-com-alcool').replace('adultosSemAlcool', 'adultos-sem-alcool'));
+                    let currentValue = parseInt(input.value) + parseInt(amount);
+                    if (currentValue < 0) currentValue = 0;
+                    input.value = currentValue;
+                    appState[dataTarget] = currentValue;
+                    break;
+                case 'calculate':
+                    const totalConvidados = appState.adultosComAlcool + appState.adultosSemAlcool + appState.criancas;
+                    if (totalConvidados === 0) {
+                        showCustomAlert("Por favor, informe o número de convidados.");
+                        return;
+                    }
+                    DOMElements.inputSection.classList.add('hidden');
+                    DOMElements.resultSection.classList.remove('hidden');
+                    renderCalculation();
+                    break;
+                case 'go-back':
+                    DOMElements.resultSection.classList.add('hidden');
+                    DOMElements.inputSection.classList.remove('hidden');
+                    break;
+                case 'copy-list':
+                    copyListToClipboard();
+                    break;
+                case 'share':
+                    share();
+                    break;
+                case 'toggle-settings':
+                    toggleModal('settings', true);
+                    break;
+                case 'toggle-theme-modal':
+                    toggleModal('theme', true);
+                    break;
+                case 'toggle-price-modal':
+                    toggleModal('price', true);
+                    renderPriceSettings();
+                    break;
+                case 'close-modal':
+                    toggleModal(dataTarget, false);
+                    break;
+                case 'change-theme':
+                    changeTheme(theme);
+                    break;
+                case 'update-price':
+                    const priceInput = document.getElementById(`price-${dataTarget}`);
+                    let currentPrice = parseFloat(priceInput.value) + parseInt(amount);
+                    if (currentPrice < 0) currentPrice = 0;
+                    priceInput.value = currentPrice.toFixed(2);
+                    break;
+                case 'save-prices':
+                    saveAndClosePrices();
+                    break;
+                case 'restore-prices':
+                    restoreDefaultPrices();
+                    break;
+            }
+        };
+        
+        const selectMenu = (menuKey) => {
+            appState.selectedMenuKey = menuKey;
+            renderCalculation();
+        };
+
+        // --- INITIALIZATION ---
+        const initialize = () => {
+            applySiteConfig();
+            loadPricesFromStorage();
+            populateMenuSelect();
+            changeTheme(appState.selectedTheme);
+
+            document.body.addEventListener('click', handleAction);
+            DOMElements.menuSelect.addEventListener('change', (e) => selectMenu(e.target.value));
+
+            DOMElements.adultosComAlcoolInput.addEventListener('input', handleDirectInput);
+            DOMElements.adultosSemAlcoolInput.addEventListener('input', handleDirectInput);
+            DOMElements.criancasInput.addEventListener('input', handleDirectInput);
+        };
+
+        initialize();
+    });
+    </script>
+</body>
+</html>
