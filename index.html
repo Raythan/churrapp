@@ -4,18 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- <<< ALTERAÇÃO: Título e meta tags atualizados para ChurrApp -->
-    <title>ChurrApp - Sua Calculadora de Churrasco Perfeita!</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🥩</text></svg>">
+
+    <title>ChurrApp - Calculadora de Churrasco</title>
     <meta name="description" content="ChurrApp: A melhor Calculadora de Churrasco online. Calcule carnes, bebidas e acompanhamentos para o seu evento de forma fácil e rápida. Personalize preços e cardápios!">
     <meta name="keywords" content="ChurrApp, calculadora de churrasco, churrasco, calcular carne, calcular bebida, lista de compras churrasco, churrasco gourmet, churrasco vegetariano">
     <meta id="meta-author" name="author" content="ChurrApp">
 
     <!-- Social Media Meta Tags (Open Graph) -->
-    <meta property="og:title" content="ChurrApp - Sua Calculadora de Churrasco Perfeita!">
+    <meta property="og:title" content="ChurrApp - Calculadora de Churrasco">
     <meta property="og:description" content="Calcule as quantidades ideais para seu churrasco e veja uma estimativa de preços. Fácil, rápido e personalizável com o ChurrApp.">
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://placehold.co/1200x630/E63946/FFFFFF?text=ChurrApp">
-    <meta id="og-url" property="og:url" content="URL_DO_SEU_SITE_AQUI">
+    <meta id="og-url" property="og:url" content="https://churrapp.netlify.app">
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -77,19 +78,19 @@
           "@type": "HowToStep",
           "name": "Informe os Convidados",
           "text": "Insira o número de adultos e crianças que participarão do churrasco.",
-          "url": "URL_DO_SEU_SITE_AQUI#input-section"
+          "url": "https://churrapp.netlify.app#input-section"
         },
         {
           "@type": "HowToStep",
           "name": "Calcule a Lista",
           "text": "Pressione o botão 'CALCULAR AGORA!' para gerar a lista de compras inicial.",
-          "url": "URL_DO_SEU_SITE_AQUI#result-section"
+          "url": "https://churrapp.netlify.app#result-section"
         },
         {
           "@type": "HowToStep",
           "name": "Personalize o Cardápio e os Preços",
           "text": "Na tela de resultados, escolha o estilo de churrasco e, se desejar, ajuste os preços dos ingredientes na área de configurações para uma estimativa mais precisa.",
-          "url": "URL_DO_SEU_SITE_AQUI#result-section"
+          "url": "https://churrapp.netlify.app#result-section"
         }
       ]
     }
@@ -102,7 +103,6 @@
         <!-- Input Section -->
         <section id="input-section">
             <header class="text-center mb-8">
-                <!-- <<< ALTERAÇÃO: Título principal atualizado -->
                 <h1 class="text-3xl font-extrabold text-gray-800">ChurrApp 🥩🔥</h1>
                 <p class="text-gray-500 mt-1">Planeje seu churrasco sem desperdício!</p>
             </header>
@@ -238,14 +238,11 @@
 
 
     <script>
-        // <<< ALTERAÇÃO: Bloco de configuração centralizado e atualizado para ChurrApp
         // --- CONFIGURAÇÕES GERAIS DO SITE ---
         // Altere os valores abaixo para personalizar as informações do seu site.
         const siteConfig = {
-            // Coloque a URL completa do seu site aqui. Essencial para SEO e compartilhamento.
-            // Exemplo: 'https://www.meuchurrapp.com.br'
-            // Se deixar como está, as URLs nos metadados não serão preenchidas.
-            url: 'URL_DO_SEU_SITE_AQUI', 
+            // <<< ALTERAÇÃO: URL atualizada
+            url: 'https://churrapp.netlify.app', 
             
             // Nome do autor ou do aplicativo. Aparecerá nos metadados do site.
             author: 'ChurrApp' 
@@ -672,7 +669,6 @@
         };
 
         // --- EVENT HANDLERS & ACTIONS ---
-        // <<< ALTERAÇÃO: Texto de compartilhamento atualizado para ChurrApp
         const generateListText = (formatForWhatsapp = true) => {
             const bold = (str) => formatForWhatsapp ? `*${str}*` : str;
 
